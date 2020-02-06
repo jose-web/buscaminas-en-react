@@ -8,6 +8,10 @@ class Casilla extends React.Component {
             visual: "🔎",
         };
     }
+    bandera = () => {
+        if (this.state.visual !== this.state.valor)
+            this.setState({ visual: "🚩" });
+    }
 
     mostrar = () => {
         if (this.state.visual !== this.state.valor) {
@@ -48,7 +52,7 @@ class Casilla extends React.Component {
     render() {
         this.props.arrayCasillas[this.props.y][this.props.x] = this
         return (
-            <button onClick={this.mostrar}>{this.state.visual}</button>
+            <button onClick={this.mostrar} onContextMenu={this.bandera}>{this.state.visual}</button>
         )
     }
 }
