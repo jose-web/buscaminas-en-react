@@ -20,6 +20,7 @@ class Tablero extends React.Component {
   tablero = []
   arrayCasillas = []
   listaComprobados = []
+  perder = false
 
   addListaComprobados = (y, x) => {
     if (this.listaComprobados.indexOf(y + " " + x) === -1) {
@@ -27,6 +28,34 @@ class Tablero extends React.Component {
       return true
     }
     return false
+  }
+
+  compruebaGanar = () => {
+    let tamanio = this.state.tamanio
+    let minas = this.state.minas
+    let casillas = tamanio * tamanio
+    let casillasSinMinas = casillas - minas
+
+    if (this.listaComprobados.length === casillasSinMinas) {
+      alert("Has ganado")
+
+      for (let i = 0; i < this.arrayCasillas.length; i++) {
+        for (let o = 0; o < this.arrayCasillas[i].length; o++) {
+          this.arrayCasillas[i][o].bandera()
+        }
+      }
+
+      return true
+    }
+    return false
+  }
+
+  compruebaPerder = () => {
+    this.perder = true
+  }
+
+  muestraPerder = () => {
+    return this.perder
   }
 
   generaTablero = () => {
@@ -106,6 +135,9 @@ class Tablero extends React.Component {
               tablero={tabla}
               valor={typeof this.tablero[i][o] == "undefined" ? "" : this.tablero[i][o]}
               addListaComprobados={this.addListaComprobados.bind(this, i, o)}
+              compruebaGanar={this.compruebaGanar}
+              muestraPerder={this.muestraPerder}
+              compruebaPerder={this.compruebaPerder}
             />
           </td>
         )
@@ -122,7 +154,6 @@ class Tablero extends React.Component {
           {this.muestraTablero()}
         </tbody>
       </table>
-
     )
   }
 }

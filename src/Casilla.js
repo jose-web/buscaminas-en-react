@@ -10,13 +10,36 @@ class Casilla extends React.Component {
     }
     bandera = () => {
         if (this.state.visual !== this.state.valor)
-            this.setState({ visual: "🚩" });
+            this.setState({ visual: "🚩" })
+    }
+
+    compruebaPerder = () => {
+        if (this.state.valor === "💣") {
+            this.props.compruebaPerder()
+        }
+        if (this.props.muestraPerder()) {
+
+            for (let i = 0; i < this.props.arrayCasillas.length; i++) {
+                for (let o = 0; o < this.props.arrayCasillas[i].length; o++) {
+                    this.props.arrayCasillas[i][o].muestraMina()
+                }
+            }
+            alert("Has perdido")
+            return true
+        }
+        return false
+    }
+
+    muestraMina = () => {
+        if (this.state.valor === "💣") {
+            this.setState({ visual: this.state.valor })
+        }
     }
 
     mostrar = () => {
-        if (this.state.visual !== this.state.valor) {
+        if (this.state.visual !== this.state.valor && !this.compruebaPerder()) {
             this.setState({ visual: this.state.valor });
-            if (this.state.valor === "" && this.state.visual !== "" && this.props.addListaComprobados()) {
+            if (this.props.addListaComprobados() && !this.props.compruebaGanar() && this.state.valor === "" && this.state.visual !== "") {
 
                 let casillas = this.props.arrayCasillas;
                 let y = this.props.y
