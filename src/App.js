@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Casilla from './Casilla.js'
 
 function App() {
   return (
@@ -12,11 +13,21 @@ class Tablero extends React.Component {
     this.state = {
       tamanio: 10,
       nivel: 0,
-      minas: 10
+      minas: 10,
     };
   }
-  //⬛
+
   tablero = []
+  arrayCasillas = []
+  listaComprobados = []
+
+  addListaComprobados = (y, x) => {
+    if (this.listaComprobados.indexOf(y + " " + x) === -1) {
+      this.listaComprobados.push(y + " " + x)
+      return true
+    }
+    return false
+  }
 
   generaTablero = () => {
     this.tablero = new Array(this.state.tamanio);
@@ -84,8 +95,20 @@ class Tablero extends React.Component {
     this.generaTablero()
     for (let i = 0; i < this.tablero.length; i++) {
       let casillas = []
+      this.arrayCasillas.push([])
       for (let o = 0; o < this.tablero[i].length; o++) {
-        casillas.push(<td key={o}>{this.tablero[i][o]}</td>)
+        casillas.push(
+          <td key={o}>
+            <Casilla
+              y={i}
+              x={o}
+              arrayCasillas={this.arrayCasillas}
+              tablero={tabla}
+              valor={typeof this.tablero[i][o] == "undefined" ? "" : this.tablero[i][o]}
+              addListaComprobados={this.addListaComprobados.bind(this, i, o)}
+            />
+          </td>
+        )
       }
       tabla.push(<tr key={i}>{casillas}</tr>)
     }
