@@ -39,6 +39,7 @@ class Casilla extends React.Component {
     mostrar = () => {
         if (this.state.visual !== this.state.valor && !this.compruebaPerder()) {
             this.setState({ visual: this.state.valor });
+            this.props.sumaPuntosCasilla[0]()
             if (this.props.addListaComprobados() && !this.props.compruebaGanar() && this.state.valor === "" && this.state.visual !== "") {
 
                 let casillas = this.props.arrayCasillas;

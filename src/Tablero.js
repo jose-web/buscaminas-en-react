@@ -1,5 +1,6 @@
 import React from 'react';
 import Casilla from './Casilla.js'
+import VisorDeDatos from './VisorDeDatos.js'
 
 class Tablero extends React.Component {
     constructor(props) {
@@ -132,6 +133,7 @@ class Tablero extends React.Component {
                             compruebaGanar={this.compruebaGanar}
                             muestraPerder={this.muestraPerder}
                             compruebaPerder={this.compruebaPerder}
+                            sumaPuntosCasilla={this.sumaPuntosCasilla}
                         />
                     </td>
                 )
@@ -141,13 +143,18 @@ class Tablero extends React.Component {
         return tabla
     }
 
+    sumaPuntosCasilla = [];
+
     render() {
         return (
-            <table id="tablero">
-                <tbody>
-                    {this.muestraTablero()}
-                </tbody>
-            </table>
+            <div>
+                <VisorDeDatos sumaPuntosCasilla={this.sumaPuntosCasilla} />
+                <table id="tablero">
+                    <tbody>
+                        {this.muestraTablero()}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }
