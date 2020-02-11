@@ -38,7 +38,7 @@ class Casilla extends React.Component {
     }
 
     mostrar = () => {
-        if (this.state.visual !== this.state.valor && !this.compruebaPerder()) {
+        if (!this.props.muestraGanar() && this.state.visual !== this.state.valor && !this.compruebaPerder()) {
             this.setState({ visual: this.state.valor });
             if (this.props.addListaComprobados() && !this.props.compruebaGanar()) {
                 this.props.puntos[1]()

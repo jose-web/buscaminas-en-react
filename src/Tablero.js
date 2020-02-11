@@ -16,6 +16,7 @@ class Tablero extends React.Component {
     arrayCasillas = []
     listaComprobados = []
     perder = false
+    ganar = false
     puntos = []
 
     addListaComprobados = (y, x) => {
@@ -34,6 +35,7 @@ class Tablero extends React.Component {
 
         if (this.listaComprobados.length === casillasSinMinas) {
             this.puntos[0].final("Has ganado")
+            this.ganar = true
             for (let i = 0; i < this.arrayCasillas.length; i++) {
                 for (let o = 0; o < this.arrayCasillas[i].length; o++) {
                     if (this.arrayCasillas[i][o].props.valor === "💣")
@@ -52,6 +54,10 @@ class Tablero extends React.Component {
 
     muestraPerder = () => {
         return this.perder
+    }
+
+    muestraGanar = () => {
+        return this.ganar
     }
 
     generaTablero = () => {
@@ -134,6 +140,7 @@ class Tablero extends React.Component {
                             compruebaGanar={this.compruebaGanar}
                             muestraPerder={this.muestraPerder}
                             compruebaPerder={this.compruebaPerder}
+                            muestraGanar={this.muestraGanar}
                             puntos={this.puntos}
                         />
                     </td>
