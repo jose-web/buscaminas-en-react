@@ -5,11 +5,26 @@ import VisorDeDatos from './VisorDeDatos.js'
 class Tablero extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tamanio: 10,
-            nivel: 0,
-            minas: 10,
-        };
+        if (window.location.search !== "") {
+            let parametros = window.location.search.substring(1)
+            let arrayParametros = parametros.split('&&')
+            for (let i = 0; i < arrayParametros.length; i++) {
+                let aux = arrayParametros[i].split("=")
+                arrayParametros[aux[0]] = aux[1]
+            }
+            console.log(arrayParametros)
+            this.state = {
+                tamanio: Number(arrayParametros["casillas"]),
+                nivel: 0,
+                minas: Number(arrayParametros["minas"]),
+            }
+        } else {
+            this.state = {
+                tamanio: 10,
+                nivel: 0,
+                minas: 10,
+            }
+        }
     }
 
     tablero = []
@@ -38,11 +53,11 @@ class Tablero extends React.Component {
             this.ganar = true
             for (let i = 0; i < this.arrayCasillas.length; i++) {
                 for (let o = 0; o < this.arrayCasillas[i].length; o++) {
-                    if (this.arrayCasillas[i][o].props.valor === "💣")
+                    if (this.arrayCasillas[i][o].props.valor === "💣") {
                         this.arrayCasillas[i][o].bandera()
+                    }
                 }
             }
-
             return true
         }
         return false
@@ -122,7 +137,8 @@ class Tablero extends React.Component {
     }
 
     muestraTablero = () => {
-        let tabla = [];
+        console.log(this.arrayCasillas)
+        let tabla = []
         this.generaTablero()
         for (let i = 0; i < this.tablero.length; i++) {
             let casillas = []
@@ -151,6 +167,35 @@ class Tablero extends React.Component {
         return tabla
     }
 
+    irNivelPersonalizado = (event) => {
+        event.preventDefault()
+
+        window.location.search = "casillas=" + event.target.casillas.value +
+            "&&minas=" + event.target.minas.value
+    }
+
+    nivelPersonalizado = () => {
+        return (
+            <form onSubmit={this.irNivelPersonalizado}>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label htmlFor="casillas">Casillas:</label></td>
+                            <td><input type="text" id="casillas" name="casillas" /></td>
+                        </tr>
+                        <tr>
+                            <td><label htmlFor="minas">Minas:</label></td>
+                            <td><input type="text" id="minas" name="minas" /></td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><input type="submit" value="Crear" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        )
+    }
+
     render() {
         return (
             <div>
@@ -160,6 +205,7 @@ class Tablero extends React.Component {
                         {this.muestraTablero()}
                     </tbody>
                 </table>
+                {this.nivelPersonalizado()}
             </div>
         )
     }
