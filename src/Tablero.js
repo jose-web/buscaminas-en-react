@@ -12,12 +12,51 @@ class Tablero extends React.Component {
                 let aux = arrayParametros[i].split("=")
                 arrayParametros[aux[0]] = aux[1]
             }
-            console.log(arrayParametros)
-            this.state = {
-                tamanio: Number(arrayParametros["casillas"]),
-                nivel: 0,
-                minas: Number(arrayParametros["minas"]),
+
+            if (typeof arrayParametros["nivel"] == "undefined") {
+                this.state = {
+                    tamanio: Number(arrayParametros["casillas"]),
+                    nivel: 0,
+                    minas: Number(arrayParametros["minas"]),
+                }
+            } else {
+                let tamanioNivel
+                let minasNivel
+
+                switch (Number(arrayParametros["nivel"])) {
+                    case 0:
+                        tamanioNivel = 10
+                        minasNivel = 10
+                        break;
+
+                    case 1:
+                        tamanioNivel = 10
+                        minasNivel = 15
+                        break;
+
+                    case 2:
+                        tamanioNivel = 15
+                        minasNivel = 20
+                        break;
+
+                    case 3:
+                        tamanioNivel = 15
+                        minasNivel = 25
+                        break;
+
+                    default:
+                        tamanioNivel = 10
+                        minasNivel = 10
+                }
+
+                this.state = {
+                    tamanio: tamanioNivel,
+                    nivel: Number(arrayParametros["nivel"]),
+                    minas: minasNivel,
+                }
+
             }
+
         } else {
             this.state = {
                 tamanio: 10,
@@ -137,7 +176,6 @@ class Tablero extends React.Component {
     }
 
     muestraTablero = () => {
-        console.log(this.arrayCasillas)
         let tabla = []
         this.generaTablero()
         for (let i = 0; i < this.tablero.length; i++) {
@@ -196,6 +234,25 @@ class Tablero extends React.Component {
         )
     }
 
+    selectorDeNiveles = () => {
+
+        let NivelesDisponibles = 4
+        let arrayBotones = [];
+        for (let i = 0; i < NivelesDisponibles; i++) {
+            arrayBotones.push(<button key={i} value={i} onClick={this.irNivel}>Nivel {i}</button>)
+        }
+
+        return (
+            <div>
+                {arrayBotones}
+            </div>
+        )
+    }
+
+    irNivel = (event) => {
+        window.location.search = "nivel=" + event.target.value
+    }
+
     render() {
         return (
             <div>
@@ -205,6 +262,7 @@ class Tablero extends React.Component {
                         {this.muestraTablero()}
                     </tbody>
                 </table>
+                {this.selectorDeNiveles()}
                 {this.nivelPersonalizado()}
             </div>
         )
