@@ -5,7 +5,7 @@ class Casilla extends React.Component {
         super(props);
         this.state = {
             valor: this.props.valor,
-            visual: "🔎",
+            visual: " ",
         };
     }
     bandera = () => {
@@ -78,7 +78,7 @@ class Casilla extends React.Component {
     render() {
         this.props.arrayCasillas[this.props.y][this.props.x] = this
         return (
-            <button onClick={this.mostrar} onContextMenu={this.bandera}>{this.state.visual}</button>
+            <button onClick={this.mostrar} onContextMenu={this.bandera} className={this.state.visual===" "?"oscuro":""}>{this.state.visual}</button>
         )
     }
 }

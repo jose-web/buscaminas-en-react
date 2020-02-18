@@ -4,12 +4,12 @@
   box-sizing: border-box;
 }
 
-#root{
-  min-height:100vh;
+#root {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color:#28a745;
+  background-color: #28a745;
 }
 
 #tablero td {
@@ -17,6 +17,7 @@
   height: 2em;
   border: 0.01em solid black;
   text-align: center;
+  line-height: 0
 }
 
 #tablero button {
@@ -29,7 +30,7 @@
 }
 
 #tablero button:hover {
-  background-color: rgba(128, 128, 128, 0.26);
+  background-color: rgba(58, 58, 58, 0.466)!important;
 }
 
 #tablero {
@@ -39,6 +40,10 @@
   background-color: white;
 }
 
-.botonNivel{
-  flex:1;
+.botonNivel {
+  flex: 1;
+}
+
+.oscuro {
+  background-color: gray !important;
 }
