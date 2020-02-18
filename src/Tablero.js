@@ -1,6 +1,8 @@
 import React from 'react';
 import Casilla from './Casilla.js'
 import VisorDeDatos from './VisorDeDatos.js'
+import { Navbar, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Tablero extends React.Component {
     constructor(props) {
@@ -53,6 +55,7 @@ class Tablero extends React.Component {
                     tamanio: tamanioNivel,
                     nivel: Number(arrayParametros["nivel"]),
                     minas: minasNivel,
+                    muestraModal: false
                 }
 
             }
@@ -62,6 +65,7 @@ class Tablero extends React.Component {
                 tamanio: 10,
                 nivel: 0,
                 minas: 10,
+                muestraModal: false
             }
         }
     }
@@ -212,25 +216,40 @@ class Tablero extends React.Component {
             "&&minas=" + event.target.minas.value
     }
 
+    modalCambiaEstado = () => {
+        this.setState({
+            muestraModal: !this.state.muestraModal
+        })
+    }
+
     nivelPersonalizado = () => {
         return (
-            <form onSubmit={this.irNivelPersonalizado}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><label htmlFor="casillas">Casillas:</label></td>
-                            <td><input type="text" id="casillas" name="casillas" /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="minas">Minas:</label></td>
-                            <td><input type="text" id="minas" name="minas" /></td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2"><input type="submit" value="Crear" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+            <>
+                <Button color="warning" className="col-12" onClick={this.modalCambiaEstado}>Crear uno personalizado</Button>
+
+                <Modal isOpen={this.state.muestraModal} toggle={this.modalCambiaEstado}>
+                    <ModalHeader toggle={this.modalCambiaEstado}>Creación de un mapa personalizado</ModalHeader>
+                    <ModalBody>
+                        <form onSubmit={this.irNivelPersonalizado}>
+                            <table className="w-100">
+                                <tbody>
+                                    <tr>
+                                        <td><label htmlFor="casillas" className="form-check-label">Casillas:</label></td>
+                                        <td><input type="text" id="casillas" name="casillas" className="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label htmlFor="minas" className="form-check-label mt-3">Minas:</label></td>
+                                        <td><input type="text" id="minas" name="minas" className="form-control mt-3" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan="2"><input type="submit" value="Crear" className="btn btn-primary w-100 mt-3" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </ModalBody>
+                </Modal>
+            </>
         )
     }
 
@@ -239,14 +258,10 @@ class Tablero extends React.Component {
         let NivelesDisponibles = 4
         let arrayBotones = [];
         for (let i = 0; i < NivelesDisponibles; i++) {
-            arrayBotones.push(<button key={i} value={i} onClick={this.irNivel}>Nivel {i}</button>)
+            arrayBotones.push(<Button color="danger" className="botonNivel m-1" key={i} value={i} onClick={this.irNivel}>Nivel {i}</Button>)
         }
 
-        return (
-            <div>
-                {arrayBotones}
-            </div>
-        )
+        return (arrayBotones)
     }
 
     irNivel = (event) => {
@@ -255,16 +270,22 @@ class Tablero extends React.Component {
 
     render() {
         return (
-            <div>
-                <VisorDeDatos puntos={this.puntos} />
+            <>
+                <Navbar color="warning">
+                    <VisorDeDatos puntos={this.puntos} />
+                </Navbar>
+
                 <table id="tablero">
                     <tbody>
                         {this.muestraTablero()}
                     </tbody>
                 </table>
-                {this.selectorDeNiveles()}
-                {this.nivelPersonalizado()}
-            </div>
+
+                <footer className="bg-primary p-2 d-flex justify-content-between flex-wrap">
+                    {this.selectorDeNiveles()}
+                    {this.nivelPersonalizado()}
+                </footer>
+            </>
         )
     }
 }

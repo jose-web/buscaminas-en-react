@@ -4,11 +4,12 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
+#root{
+  min-height:100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color:#28a745;
 }
 
 #tablero td {
@@ -34,4 +35,10 @@ body {
 #tablero {
   border: 0.01em solid black;
   border-collapse: collapse;
+  align-self: center;
+  background-color: white;
+}
+
+.botonNivel{
+  flex:1;
 }
