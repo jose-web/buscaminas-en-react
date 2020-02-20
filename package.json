@@ -1,5 +1,6 @@
 {
   "name": "buscaminas",
+  "homepage": "http://localhost/buscaminas-en-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

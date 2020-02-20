@@ -8,9 +8,18 @@ class Casilla extends React.Component {
             visual: " ",
         };
     }
-    bandera = () => {
+
+
+    bandera = ($completado) => {
         if (this.state.visual !== this.state.valor && this.props.puntos[0].state.resultado === "Jugando")
-            this.setState({ visual: "🚩" })
+            if (!$completado)
+                this.setState({ visual: "🚩" })
+            else
+                if (this.state.visual === "🚩")
+                    this.setState({ visual: " " })
+                else
+                    this.setState({ visual: "🚩" })
+
     }
 
     compruebaPerder = () => {

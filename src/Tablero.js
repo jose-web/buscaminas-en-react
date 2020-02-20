@@ -97,7 +97,7 @@ class Tablero extends React.Component {
             for (let i = 0; i < this.arrayCasillas.length; i++) {
                 for (let o = 0; o < this.arrayCasillas[i].length; o++) {
                     if (this.arrayCasillas[i][o].props.valor === "💣") {
-                        this.arrayCasillas[i][o].bandera()
+                        this.arrayCasillas[i][o].bandera(false)
                     }
                 }
             }
