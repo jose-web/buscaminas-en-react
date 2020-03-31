@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/buscaminas-en-react/static/css/main.0b32d6bf.chunk.css",
+    "main.js": "/buscaminas-en-react/static/js/main.4bb409a4.chunk.js",
+    "main.js.map": "/buscaminas-en-react/static/js/main.4bb409a4.chunk.js.map",
+    "runtime-main.js": "/buscaminas-en-react/static/js/runtime-main.dfe8d6cd.js",
+    "runtime-main.js.map": "/buscaminas-en-react/static/js/runtime-main.dfe8d6cd.js.map",
+    "static/css/2.de424728.chunk.css": "/buscaminas-en-react/static/css/2.de424728.chunk.css",
+    "static/js/2.c0a5598f.chunk.js": "/buscaminas-en-react/static/js/2.c0a5598f.chunk.js",
+    "static/js/2.c0a5598f.chunk.js.map": "/buscaminas-en-react/static/js/2.c0a5598f.chunk.js.map",
+    "index.html": "/buscaminas-en-react/index.html",
+    "precache-manifest.fe88593831e7006659c1b9511f6507f8.js": "/buscaminas-en-react/precache-manifest.fe88593831e7006659c1b9511f6507f8.js",
+    "service-worker.js": "/buscaminas-en-react/service-worker.js",
+    "static/css/2.de424728.chunk.css.map": "/buscaminas-en-react/static/css/2.de424728.chunk.css.map",
+    "static/css/main.0b32d6bf.chunk.css.map": "/buscaminas-en-react/static/css/main.0b32d6bf.chunk.css.map",
+    "static/js/2.c0a5598f.chunk.js.LICENSE.txt": "/buscaminas-en-react/static/js/2.c0a5598f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dfe8d6cd.js",
+    "static/css/2.de424728.chunk.css",
+    "static/js/2.c0a5598f.chunk.js",
+    "static/css/main.0b32d6bf.chunk.css",
+    "static/js/main.4bb409a4.chunk.js"
+  ]
+}
