@@ -15,7 +15,7 @@
 #tablero td {
   width: 2em;
   height: 2em;
-  border: 0.01em solid black;
+  border: 0.1em solid black;
   text-align: center;
   line-height: 0
 }
