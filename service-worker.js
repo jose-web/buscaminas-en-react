@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/buscaminas-en-react/precache-manifest.0efebece6ccacfcd055b38522135a85d.js"
+  "/buscaminas-en-react/precache-manifest.abb160f0107640b575e9196522de0951.js"
 );
 
 self.addEventListener('message', (event) => {
